@@ -8,35 +8,35 @@ class Task():
     def __init__(self):
         self.tasks = []
 
-    def new_task (self, opis, time, status=False):#Реализуй функцию для добавления задач,
-        task={'opis':opis,'time':time,'status':status}
+    def new_task (self, description, term, status=False):#Реализуй функцию для добавления задач,
+        task={'description':description,'term':term,'status':status}
         self.tasks.append(task)
-        print(f'задача "{opis}" добавленна')
+        print(f'задача "{description}" добавленна')
 
-    def otmetka (self, opis):#отметки выполненных задач
+    def complete_task (self, description):#отметки выполненных задач
         for task in self.tasks:
-            if task['opis'] == opis:
+            if task['description'] == description:
                 task['status'] = True
-                print(f'Задача с описанием :"{opis}" выполненна')
+                print(f'Задача с описанием :"{description}" выполненна')
                 break
         else:
-            print(f'Задача "{opis}" ненайдена')
+            print(f'Задача "{description}" ненайдена')
 
-    def itog_task (self):#вывода списка текущих (не выполненных) задач.
+    def show_current_tasks (self):#вывода списка текущих (не выполненных) задач.
         print(f'Активные задачи:')
         n = 1
         for task in self.tasks:
             if task['status'] == False:
-                print(f'{n}) {task["opis"]} нужно выполнить до {task["time"]}')
+                print(f'{n}) {task["description"]} нужно выполнить до {task["term"]}')
                 n += 1
 
 manager = Task()
 manager.new_task("Купить молоко", "2025-04-10")
 manager.new_task("Купить 1", "2025-05-10")
 
-manager.itog_task()
+manager.show_current_tasks()
 
-manager.otmetka("Купить1")
-manager.otmetka("Купить 1")
+manager.complete_task("Купить1")
+manager.complete_task("Купить 1")
 
-manager.itog_task()
+manager.show_current_tasks()

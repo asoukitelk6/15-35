@@ -33,45 +33,45 @@ class Store():
         self.address = address
         self.items = []
 
-    def new_tovar (self,tovar,money):#метод для добавления товара в ассортимент.название товара, а значение - его цена
-        assortiment = {'tovar': tovar, 'money': money}
+    def new_product (self,product,price):#метод для добавления товара в ассортимент.название товара, а значение - его цена
+        assortiment = {'product': product, 'price': price}
         self.items.append(assortiment)
-        print(f'Добавлен товар "{tovar}" с ценой "{money}" в магазин "{self.name}"')
+        print(f'Добавлен товар "{product}" с ценой "{price}" в магазин "{self.name}"')
 
-    def del_tovar (self,tovar):#метод для удаления товара из ассортимента.
+    def del_product (self,product):#метод для удаления товара из ассортимента.
         for assortiment in self.items:
-            if assortiment['tovar'] == tovar:
+            if assortiment['product'] == product:
                 self.items.remove(assortiment)
-                print(f'Товара "{tovar}" удален из базы')
+                print(f'Товар "{product}" удален из базы')
                 break
         else:
-            print(f'Товар "{tovar}" отсутствует')
+            print(f'Товар "{product}" отсутствует')
 
-    def money_tovar (self,tovar):#метод для получения цены товара по его названию. Если товар отсутствует, возвращайте None.
+    def price_product (self,product):#метод для получения цены товара по его названию. Если товар отсутствует, возвращайте None.
         for assortiment in self.items:
-            if assortiment['tovar'] == tovar:
-                print(f'У товара "{tovar}" цена "{assortiment["money"]}"')
+            if assortiment['product'] == product:
+                print(f'У товара "{product}" цена "{assortiment["price"]}"')
                 break
         else:
-            print(f'Товар "{tovar}" отсутствует')
+            print(f'Товар "{product}" отсутствует')
 
-    def new_money_tovar (self,tovar,new_money):#метод для обновления цены товара.
+    def new_price_product (self,product,new_price):#метод для обновления цены товара.
         for assortiment in self.items:
-            if assortiment['tovar'] == tovar:
-                assortiment['money'] = new_money
-                print(f'У товара "{tovar}" новая цена "{new_money}"')
+            if assortiment['product'] == product:
+                assortiment['price'] = new_price
+                print(f'У товара "{product}" новая цена "{new_price}"')
                 break
         else:
-            print(f'Товар "{tovar}" отсутствует')
+            print(f'Товар "{product}" отсутствует')
 
-    def itog_assortiment (self):#вывода списка текущих (не выполненных) задач.
+    def list_assortiment (self):#вывода списка текущих (не выполненных) задач.
         if not self.items:
             print(f'Товары отсутствуют в магазине {self.name}')
         else:
             print(f'В магазине {self.name} по адресу {self.address} есть товары:')
             n = 1
             for assortiment in self.items:
-                print(f'{n}) {assortiment["tovar"]}, цена - {assortiment["money"]}')
+                print(f'{n}) {assortiment["product"]}, цена - {assortiment["price"]}')
                 n += 1
 
 
@@ -80,25 +80,25 @@ mag1 = Store('Гроздь','г.Саратов')
 mag2 = Store('Пятерочка','г.Москва')
 mag3 = Store('Магнит','г.Краснодар')
 
-mag1.new_tovar('Молоко 2.5',55)
-mag1.new_tovar('Молоко 3.2',80)
-mag1.new_tovar('сыр тильзитер',750)
-mag1.new_tovar('сливочное масло',1000)
+mag1.new_product('Молоко 2.5',55)
+mag1.new_product('Молоко 3.2',80)
+mag1.new_product('сыр тильзитер',750)
+mag1.new_product('сливочное масло',1000)
 
-mag2.new_tovar('Молоко',80)
-mag2.new_tovar('сыр',600)
-mag2.new_tovar('масло',200)
+mag2.new_product('Молоко',80)
+mag2.new_product('сыр',600)
+mag2.new_product('масло',200)
 
-mag3.new_tovar('Вода',20)
-mag3.new_tovar('Сахар',60)
-mag3.new_tovar('Мука',100)
+mag3.new_product('Вода',20)
+mag3.new_product('Сахар',60)
+mag3.new_product('Мука',100)
 
-mag2.itog_assortiment()
-mag1.itog_assortiment()
-mag3.itog_assortiment()
+mag2.list_assortiment()
+mag1.list_assortiment()
+mag3.list_assortiment()
 
-mag1.new_money_tovar('Молоко',55)
-mag1.new_money_tovar('сыр тильзитер',650)
-mag1.del_tovar('Молоко 3.2')
-mag1.del_tovar('Молоко 3.3')
-mag1.money_tovar('сливочное масло')
+mag1.new_price_product('Молоко',55)
+mag1.new_price_product('сыр тильзитер',650)
+mag1.del_product('Молоко 3.2')
+mag1.del_product('Молоко 3.3')
+mag1.price_product('сливочное масло')
